@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,8 +24,8 @@ public class Matrix {
         //matrix generation
         //multiplying NON-SQUARE matrix is NOT A PROBLEM for this app
         //Date date1 = new Date();
-        double[][] mas = getArray(30, 50);
-        double[][] mas3 = getArray(50, 70);
+        double[][] mas = getArray(10, 30);
+        double[][] mas3 = getArray(30, 40);
         Matrix m1 = new Matrix(mas);
         Matrix m2 = new Matrix(mas3);
 
@@ -34,7 +33,7 @@ public class Matrix {
         System.out.println("------------------------------------------------------------");
         System.out.println("This app works with square and NON-SQUARE matrixes with ease");
         System.out.println("Result matrix:");
-        printMatrix(mama);
+        MatrixHelper.printMatrix(mama);
         System.out.println("Size of result matrix is (" + mama.getRows() + " , " + mama.getColumns() + ") for multiplying used "
                 + MultiplyThread.count + " threads");
         //Date date2 = new Date();
@@ -42,19 +41,10 @@ public class Matrix {
         //System.out.println("Время " + time);
     }
 
-    protected static void printMatrix(Matrix mama) {
-        for (double[] ints : mama.getMatrix()) {
-            for (double i : ints) {
-                System.out.print(String.format("%.0f ", i));
-            }
-            System.out.println();
-        }
-    }
-
     protected Matrix multiply(Matrix m2) throws MatrixMultiplyException {
         if (checkIfPossible(this, m2)) {
 
-            printM1M2(m2);//printing array 1 and 2;
+            MatrixHelper.printM1M2(this, m2);//printing array 1 and 2;
 
             int resultRows = this.getRows();
             int resultCols = m2.getColumns();
@@ -129,22 +119,6 @@ public class Matrix {
             }
         } else throw new MatrixMultiplyException();
         return mult;
-    }
-
-    protected void printM1M2(Matrix m2) {
-        for (double[] ints : this.getMatrix()) {
-            for (double anInt : ints) {
-                System.out.print(anInt + " ");
-            }
-            System.out.println();
-        }
-        System.out.println("------------------------------------------------------------");
-        for (double[] ints : m2.getMatrix()) {
-            for (double anInt : ints) {
-                System.out.print(anInt + " ");
-            }
-            System.out.println();
-        }
     }
 
     protected static boolean checkIfPossible(Matrix m1, Matrix m2) {

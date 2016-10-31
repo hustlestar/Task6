@@ -1,5 +1,3 @@
-import java.util.Date;
-
 /**
  * Created by Hustler on 08.10.2016.
  */
@@ -21,7 +19,7 @@ public class Matrix2 extends Matrix {
         System.out.println("------------------------------------------------------------");
         System.out.println("This app works with square and non-square matrixes with ease");
         System.out.println("Result matrix:");
-        printMatrix(mama);
+        MatrixHelper.printMatrix(mama);
         System.out.println("Size of result matrix is (" + mama.getRows() + " , " + mama.getColumns() + ") for multiplying used "
                 + Multiply2Thread.count + " threads");
         //Date date2 = new Date();
@@ -32,7 +30,7 @@ public class Matrix2 extends Matrix {
     @Override
     protected Matrix multiply(Matrix m2) throws MatrixMultiplyException {
         if (checkIfPossible(this, m2)) {
-            printM1M2(m2); //printing array 1 and 2;
+            MatrixHelper.printM1M2(this, m2); //printing array 1 and 2;
 
             int resultRows = this.getRows();
             int resultCols = m2.getColumns();
